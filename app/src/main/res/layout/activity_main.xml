@@ -15,11 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:contentViewId="@id/rvList2"
-        app:handleSize="53dp"
-        app:hasMiddleStatus="false"
+        app:handleSize="20%"
+        app:hasMiddleStatus="true"
         app:initStatus="close"
-        app:middleRemainingSpace="60%"
-        app:minRemainingSpace="30%">
+        app:dragViewId="@id/dragViewId"
+        app:middleRemainingSpace="50%"
+        app:minRemainingSpace="20%">
 
         <LinearLayout
             android:id="@+id/llDragView"
@@ -30,12 +31,19 @@
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.5">
 
-            <TextView
-                android:layout_width="40dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_white_10r" />
+            <RelativeLayout
+                android:id="@+id/dragViewId"
+                android:layout_width="match_parent"
+                android:background="#F5F5F5"
+                android:layout_height="20dp">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="3dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_white_10r" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -43,7 +51,6 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="@string/test_content_text"
-                android:textColor="@android:color/white"
                 android:textSize="13sp" />
 
             <android.support.v7.widget.RecyclerView

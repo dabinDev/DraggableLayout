@@ -9,3 +9,8 @@
 /captures
 .externalNativeBuild
 /kelin.jks
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml

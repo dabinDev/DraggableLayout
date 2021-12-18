@@ -56,5 +56,10 @@
         <!--通常情况下该参数不需要设置，但是如果你的抽屉里面不止一个可以响应手势控件的时候(例如有一个横向的listView和一个竖向的listView)
         就需要使用一个ViewGroup将这两个listView包裹起来，然后将这个ViewGroup的ID通过该参数设置，这样才能保证两个listView都能响应手势控制。-->
         <attr name="contentViewId" format="reference"/>
+
+
+        <!--通常情况下该参数不需要设置，但是如果你的抽屉里面不止一个可以响应手势控件的时候(例如有一个横向的listView和一个竖向的listView)
+       就需要使用一个ViewGroup将这两个listView包裹起来，然后将这个ViewGroup的ID通过该参数设置，这样才能保证两个listView都能响应手势控制。-->
+        <attr name="dragViewId" format="reference"/>
     </declare-styleable>
 </resources>
