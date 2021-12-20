@@ -25,11 +25,6 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
-import android.support.annotation.IntDef
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.AttributeSet
 import android.util.Log
 import android.view.GestureDetector
@@ -40,6 +35,11 @@ import android.widget.AbsListView
 import android.widget.FrameLayout
 import android.widget.ScrollView
 import android.widget.Scroller
+import androidx.annotation.IntDef
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 /**
@@ -64,7 +64,6 @@ class DraggableLayout @JvmOverloads constructor(
     private val spaceInfo: SpaceInfo
     private var initialStatus = STATUS_CLOSED
     private var contentViewId = View.NO_ID
-    private var dragViewId = View.NO_ID
     private var hasMiddleStatus = false
     private var currentInnerStatus = InnerStatus.MIDDLE
     private var contentView: View? = null
@@ -88,7 +87,6 @@ class DraggableLayout @JvmOverloads constructor(
                 initialStatus = a.getInteger(R.styleable.DraggableLayout_initStatus, initialStatus)
                 contentViewId =
                     a.getResourceId(R.styleable.DraggableLayout_contentViewId, contentViewId)
-                dragViewId = a.getResourceId(R.styleable.DraggableLayout_dragViewId, dragViewId)
                 hasMiddleStatus =
                     a.getBoolean(R.styleable.DraggableLayout_hasMiddleStatus, hasMiddleStatus)
                 a.recycle()
@@ -184,7 +182,7 @@ class DraggableLayout @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
         val cv = findViewById<View>(contentViewId)
-        val dragView = findViewById<View>(dragViewId)
+//        val dragView = findViewById<View>(dragViewId)
 //        this.setOnTouchListener { v: View, event: MotionEvent? ->
 //            Log.e("log", "setOnTouchListener：viewId="+ (v.id ?: ""))
 //            return@setOnTouchListener if(v.id==dragViewId){
@@ -320,7 +318,7 @@ class DraggableLayout @JvmOverloads constructor(
                 else -> return false
             }
             return false
-        }else{
+        } else {
             return false
         }
     }
@@ -514,6 +512,7 @@ class DraggableLayout @JvmOverloads constructor(
                     return
                 }
             }
+
             setDraggable(false)
         }
     }
