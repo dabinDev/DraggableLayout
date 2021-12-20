@@ -14,7 +14,7 @@
         android:id="@+id/dlRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentViewId="@id/rvList2"
+        app:referenceViewId="@id/rvList2"
         app:handleSize="20%"
         app:hasMiddleStatus="true"
         app:initStatus="close"

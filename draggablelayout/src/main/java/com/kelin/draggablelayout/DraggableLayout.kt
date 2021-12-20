@@ -86,7 +86,7 @@ class DraggableLayout @JvmOverloads constructor(
                 )
                 initialStatus = a.getInteger(R.styleable.DraggableLayout_initStatus, initialStatus)
                 contentViewId =
-                    a.getResourceId(R.styleable.DraggableLayout_contentViewId, contentViewId)
+                    a.getResourceId(R.styleable.DraggableLayout_referenceViewId, contentViewId)
                 hasMiddleStatus =
                     a.getBoolean(R.styleable.DraggableLayout_hasMiddleStatus, hasMiddleStatus)
                 a.recycle()
