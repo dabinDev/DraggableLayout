@@ -24,7 +24,7 @@
         <LinearLayout
             android:id="@+id/llDragView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_grey_10r_lt_rt"
             android:orientation="vertical"
             app:layout_constraintHeight_default="percent"

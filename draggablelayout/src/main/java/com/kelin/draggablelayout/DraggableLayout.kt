@@ -75,6 +75,11 @@ class DraggableLayout @JvmOverloads constructor(
 
     private var isDraggable = true
 
+    public fun addOnScrollChangedListener(listener: OnScrollChangedListener) {
+        this.onScrollChangedListener=listener
+    }
+
+
     init {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.DraggableLayout)
@@ -261,7 +266,7 @@ class DraggableLayout @JvmOverloads constructor(
 
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        Log.e("log", "onInterceptTouchEvent")
+//        Log.e("log", "onInterceptTouchEvent")
         val x = ev.x
         val y = ev.y
         if (y < Math.abs(scrollY) || y > bottom || !isDraggable && currentInnerStatus == InnerStatus.OPENED && !isInHandlerView(
@@ -269,7 +274,7 @@ class DraggableLayout @JvmOverloads constructor(
                 y
             )
         ) {
-            Log.e("log", "onInterceptTouchEvent-拦截")
+//            Log.e("log", "onInterceptTouchEvent-拦截")
             return false
         } else if (isInHandlerView(
                 x,
@@ -407,6 +412,7 @@ class DraggableLayout @JvmOverloads constructor(
     }
 
     private fun onScrollFinished(@Status status: Int) {
+        onStateChangeListener?.onStateChange(status)
         onScrollChangedListener?.onScrollFinished(status)
     }
 
@@ -555,6 +561,7 @@ class DraggableLayout @JvmOverloads constructor(
         val duration =
             MIN_SCROLL_DURATION + Math.abs((MAX_SCROLL_DURATION - MIN_SCROLL_DURATION) * dy / (spaceInfo.maxSpace - spaceInfo.minSpace))
         scroller.startScroll(0, scrollY, 0, dy, duration)
+
         invalidate()
     }
 
@@ -716,6 +723,11 @@ class DraggableLayout @JvmOverloads constructor(
          * @param top the child view scroll data.
          */
         fun onChildScroll(top: Int)
+    }
+
+
+    public interface OnLayoutChangeListener {
+        fun onStateChange(@Status currentStatus: Int)
     }
 
     private inner class SpaceInfo(

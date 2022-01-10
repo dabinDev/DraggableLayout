@@ -1,13 +1,17 @@
 package com.kelin.draggablelayoutdemo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kelin.draggablelayout.DraggableLayout
+import com.kelin.draggablelayout.DraggableLayout.OnLayoutChangeListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,11 +24,28 @@ class MainActivity : AppCompatActivity() {
         rvList2.layoutManager = LinearLayoutManager(this)
         rvList2.adapter = TestAdapter(getDataList("我是拖拽列表的条目"))
         rvList2.requestDisallowInterceptTouchEvent(true)
+        dlRoot.addOnScrollChangedListener(object : DraggableLayout.OnScrollChangedListener {
+            override fun onScrollProgressChanged(currentProgress: Float) {
+            }
+
+            override fun onScrollFinished(currentStatus: Int) {
+                Log.e("addOnScrollChangedListener","onScrollFinished"+currentStatus)
+            }
+
+            override fun onChildScroll(top: Int) {
+                Log.e("addOnScrollChangedListener","onChildScroll"+top)
+            }
+
+
+        })
 //        tvRoot.setOnClickListener { dlRoot.scrollToOpen() }
     }
 
     override fun onStart() {
         super.onStart()
+        tvTitle.setOnClickListener{
+            Toast.makeText(this,"23123",Toast.LENGTH_LONG).show()
+        }
 //        dlRoot.setIsSupportExit(true)
 //        dlRoot.setAllowHorizontalScroll(true)
 //        dlRoot.setOnScrollChangedListener(mOnScrollChangedListener)
